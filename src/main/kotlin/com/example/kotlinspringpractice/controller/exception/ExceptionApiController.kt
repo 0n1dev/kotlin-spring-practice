@@ -30,9 +30,11 @@ class ExceptionApiController {
     }
 
     @GetMapping("/index-out-of-bound")
-    fun indexOutOfBound() {
+    fun indexOutOfBound(): String {
         val list = mutableListOf<String>()
-        val temp = list[0]
+        // val temp = list[0]
+
+        return "hello"
     }
 
     @GetMapping
