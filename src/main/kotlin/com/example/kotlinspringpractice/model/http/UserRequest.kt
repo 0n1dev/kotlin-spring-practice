@@ -1,5 +1,6 @@
 package com.example.kotlinspringpractice.model.http
 
+import com.example.kotlinspringpractice.annotation.StringFormatDateTime
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.databind.PropertyNamingStrategies
 import com.fasterxml.jackson.databind.PropertyNamingStrategy
@@ -29,17 +30,18 @@ data class UserRequest(
     // @JsonProperty("phone_number") Json에서는 스네이크케이스를 주로 사용해서 서로 매핑되도록 지정.
     var phoneNumber: String?=null, // 코틀린에서는 기본적으로 카멜케이스 사용.
 
+    @field:StringFormatDateTime(pattern = "yyyy-MM-dd HH:mm:ss", message = "패턴이 올바르지 않습니다.")
     var createdAt: String?=null
 ) {
 
-    @AssertTrue(message = "createdAt의 패턴이 잘못되었습니다.")
-    private fun isValidCreatedAt(): Boolean {
-
-        return try {
-            LocalDateTime.parse(this.createdAt, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
-            true
-        } catch (e: Exception) {
-            false
-        }
-    }
+//    @AssertTrue(message = "createdAt의 패턴이 잘못되었습니다.")
+//    private fun isValidCreatedAt(): Boolean {
+//
+//        return try {
+//            LocalDateTime.parse(this.createdAt, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
+//            true
+//        } catch (e: Exception) {
+//            false
+//        }
+//    }
 }
